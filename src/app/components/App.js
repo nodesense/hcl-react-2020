@@ -3,6 +3,8 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Counter from './Counter';
+import Cart from './Cart';
+
 
 // functional component
 // react calls function component
@@ -20,9 +22,11 @@ function App() {
                 <h2>Product App</h2>
             </Header>
 
+            <Cart />
+{/* 
             <Counter startValue={100} />
 
-            <Counter startValue={50} />
+            <Counter startValue={50} /> */}
 
 
             <Footer companyName="HCL"

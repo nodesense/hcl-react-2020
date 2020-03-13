@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './index.css';
+
 import App from './app/components/App';
 
 // bootstarp app component into real dom

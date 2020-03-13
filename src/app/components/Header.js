@@ -1,9 +1,10 @@
 import React from 'react';
 
 //es6 function
-const Header = () => {
+const Header = (props) => {
     return (
         <div>
+            {props.children}
             <hr />
         </div>
     )

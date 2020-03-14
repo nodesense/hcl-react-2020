@@ -2,7 +2,16 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+import ThemeContext from './ThemeContext';
+import LanguageContext from './LanguageContext';
+
 class CartItem extends PureComponent {
+
+    // class component should use contextType
+    static contextType = ThemeContext; // try to avoid, use Consumer
+ 
+    // with above, this.context
+
     constructor(props) {
         super(props);
     }
@@ -15,6 +24,7 @@ class CartItem extends PureComponent {
         let {item} = this.props;
 
         console.log("CartItem Render ", item.id);
+        console.log('Theme context is', this.context);
 
         return (
             <tr>
@@ -23,16 +33,32 @@ class CartItem extends PureComponent {
                 <td>{item.qty}</td>
                 <td>{item.price * item.qty}</td>
                 <td> 
-                <button onClick={() => this.props.updateItem(item.id, item.qty + 1) }>
+                <button className={this.context} onClick={() => this.props.updateItem(item.id, item.qty + 1) }>
                         +1
                 </button>    
 
-                <button onClick={ () => this.props.updateItem(item.id, item.qty - 1)  }>
+                <button className={this.context} onClick={ () => this.props.updateItem(item.id, item.qty - 1)  }>
                         -1
                 </button>    
-                <button onClick={ () => this.props.removeItem(item.id) }>
+                <button className={this.context} onClick={ () => this.props.removeItem(item.id) }>
                         X
                 </button>
+                <LanguageContext.Consumer>
+                    {
+                        (langDict) => (
+                            <ThemeContext.Consumer>
+                                {
+                                    (themeName) => (
+                                        <button className={themeName}>
+                                            {langDict.contact_label}
+                                        </button>
+                                    )
+                                }
+                            </ThemeContext.Consumer>
+                        )
+                    }
+                
+                </LanguageContext.Consumer>
                 </td>
             </tr>
         )

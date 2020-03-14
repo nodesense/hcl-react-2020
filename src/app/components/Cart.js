@@ -94,7 +94,6 @@ class Cart extends Component {
         this.setState(this.recalculate);
     }
     
-    
     render() {
         console.log("Cart render")
         return (
@@ -104,7 +103,6 @@ class Cart extends Component {
             <button onClick={this.addItem}>
                 Add Item
             </button>
-
 
             <button onClick={this.empty}>
                 Empty

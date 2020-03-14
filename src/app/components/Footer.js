@@ -2,6 +2,11 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
+import ThemeContext from './ThemeContext';
+import LanguageContext from './LanguageContext';
+
+import {withRouter} from 'react-router-dom';
+
 // props are passed as first arg as an object
 // within JSX, only expression are allowed, no STATEMENTS
 const Footer = (props) => {
@@ -11,6 +16,7 @@ const Footer = (props) => {
     return (
     <div>
         <hr />
+       
         <p>Copyrights @{props.companyName}, {props.year}</p>
         <ul>
         {
@@ -21,6 +27,30 @@ const Footer = (props) => {
         </ul>
 
         {props.children}
+
+        <LanguageContext.Consumer>
+            {
+                (langDict) => (
+                    <ThemeContext.Consumer>
+                        {
+                            (themeName) => (
+                                <button className={themeName}>
+                                    {langDict.contact_label}
+                                </button>
+                            )
+                        }
+                    </ThemeContext.Consumer>
+                )
+            }
+        
+        </LanguageContext.Consumer>
+
+
+        
+        <button onClick={ () => props.history.push('/cart')}>
+                Cart
+        </button>
+
     </div>
 )
     };
@@ -39,4 +69,10 @@ Footer.defaultProps = {
     year: 2020, // used if parent component doesn't pass data
 }
 
-export default Footer;
+// Container component/higher order component
+// WrapperFooter wraps the Footer component inside as child
+// WrapperFooter takes location,history from router,
+// pass to Footer as props
+const WrapperFooter = withRouter(Footer);
+
+export default WrapperFooter;

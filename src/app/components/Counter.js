@@ -2,6 +2,8 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
+import withProtectedRoute from './withProtectedRoute';
+
 // class component
 class Counter extends React.Component {
     //ES.next/stage-2, allow static variable inside class
@@ -80,12 +82,33 @@ class Counter extends React.Component {
                 counter: prevState.counter - 1
             }
         })
+
+        console.log('decrement after ',this.state);
+
     }
 
     // ES.NEXT
     // recommended
     multiply = () => {
         console.log('multiply before ', this.state);
+    }
+
+
+    componentDidMount() {
+        // creation life cycle
+        this.timer = setInterval( () => {
+            this.setState( (prevState) => {
+                return {
+                    counter: prevState.counter + 1
+                }
+            });
+            console.log('Timer running', this.state)
+        }, 5000);
+    }
+
+    componentWillUnmount() {
+        console.log('counter will unmount');
+        clearInterval(this.timer);
     }
 
     //must have
@@ -112,9 +135,19 @@ class Counter extends React.Component {
                     * 2
                 </button>
 
+                {
+                    this.state.counter % 2 == 0? <p>Even</p>: <p>Odd</p>
+                }
+
+
+                 {
+                     this.state.counter % 2 == 0 && 
+                     <p> Even number </p>
+                 }   
+
             </div>
         )
     }
 }
 
-export default Counter;
+export default withProtectedRoute(Counter);

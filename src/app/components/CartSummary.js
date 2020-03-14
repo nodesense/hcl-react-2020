@@ -20,7 +20,34 @@ import PropTypes from "prop-types";
  
     //TODO: shouldComponentUpdate
 
-    recalculate(props) {
+    // recalculate(props) {
+    //     let discount = 0;
+
+    //     if (props.count >= 10) {
+    //         discount = 20;
+    //     } else if (props.count >= 5) {
+    //         discount = 10;
+    //     }
+
+    //     let grandTotal = props.amount - (props.amount * discount / 100);
+
+    //     this.setState({
+    //         discount, 
+    //         grandTotal
+    //     })
+    // }
+
+
+    // new lifecycle method, instead of willmount and willreceiveprops
+
+    // called on creation, update cycle
+    // called on parent render on create/update cycle
+    // called on this.setState
+    static getDerivedStateFromProps(props, state) {
+        // should be sync function, no async code
+        // static, no this, no this.setState
+        console.log('summary getDerivedStateFromProps')
+        // return new state
         let discount = 0;
 
         if (props.count >= 10) {
@@ -31,23 +58,24 @@ import PropTypes from "prop-types";
 
         let grandTotal = props.amount - (props.amount * discount / 100);
 
-        this.setState({
-            discount, 
-            grandTotal
-        })
+        return {
+            grandTotal,
+            discount
+        }
     }
+
      
-    UNSAFE_componentWillMount() {
-        this.recalculate(this.props);
-    }
+    // UNSAFE_componentWillMount() {
+    //     this.recalculate(this.props);
+    // }
 
     // update cycle method
     // invoked when parent render called on update cycle
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps next', nextProps);
-        console.log('willreceive this.props ', this.props);
-        this.recalculate(nextProps);
-    }
+    // UNSAFE_componentWillReceiveProps(nextProps) {
+    //     console.log('componentWillReceiveProps next', nextProps);
+    //     console.log('willreceive this.props ', this.props);
+    //     this.recalculate(nextProps);
+    // }
 
     // update cycle method
     // return true - render called
@@ -56,11 +84,11 @@ import PropTypes from "prop-types";
     // whenever parent render called on update cycle
     // whenever this.setState called on update cycle
     shouldComponentUpdate(nextProps, nextState) {
-    console.log('summary should update ');
-    return this.props.amount !== nextProps.amount ||
-            this.props.count !== nextProps.count ||
-            this.state.grandTotal !== nextState.grandTotal ||
-            this.state.discount !== nextState.discount;
+        console.log('summary should update ');
+        return this.props.amount !== nextProps.amount ||
+                this.props.count !== nextProps.count ||
+                this.state.grandTotal !== nextState.grandTotal ||
+                this.state.discount !== nextState.discount;
     }
     
     render() {

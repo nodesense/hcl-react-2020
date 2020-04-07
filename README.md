@@ -1,3 +1,18 @@
+# Get Started
+
+```
+
+git clone https://github.com/nodesense/hcl-react-2020
+
+cd hcl-react-2020
+
+npm install
+```
+
+if git software is not installed, Download as zip, extract the files, and do `npm install`
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

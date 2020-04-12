@@ -325,7 +325,11 @@ class MagicComponent { -- parent component/container higher order component
 }
 
 
+# React-Redux
+    -- 
 
+    npm install react-redux
+    
 
 
 if git software is not installed, Download as zip, extract the files, and do `npm install`

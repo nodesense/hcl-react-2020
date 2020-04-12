@@ -1,124 +1,25 @@
+//store.js
+
 import {createStore,
         combineReducers, 
         applyMiddleware} from 'redux';
+        
+import { createLogger } from 'redux-logger'
+
+import {counterReducer} from './state/reducers/counterReducer';
+import {cartReducer} from './state/reducers/cartReducer';
+import {loggerMiddleware} from './state/middlewares/loggerMiddleware';
+import {cacheMiddleware} from './state/middlewares/cacheMiddleware';
+
+// NOT NEEDED, should be part of component/containers
+import {increment} from './state/actions';
+import {INCREMENT} from './state/action-types';
+
+
+
+const logger = createLogger({});
 
 console.log('redux starter');
-
-//action-types.js
-// constants, action type strings used in projects
-// every action type should be unique in the application
-// best pratice : MODULE/Action
-// example/conventions
-//                /counter/increment
-//                [counter increment]
-//                COUNTER.INCREMENT
-
-export const INCREMENT = '[counter increment]';
-export const DECREMENT = '[counter decrement]';
-export const RESET     = '[counter reset]';
-
-//actions.js
-// write your action creators
-// action creaters are helper function
-// create and return action objects
-
-// es5
-export function increment(value) {
-    return { // return a new object
-        type: INCREMENT,
-        payload: {value: value} // OR {value}
-    }
-}
-// es6/ single line, without return statement
-export const decrement = (value) => ({ // new object
-        type: DECREMENT, // type is keyword
-        payload: {value} // payload is conventional
-})
-//no payload
-export const reset = () => ({type: RESET})
-
-//counterReducer.js
-//reducers
-//TODO: import all action types here
-
-
-// reducer, pure function
-// called by dispatch method, two arguments
-// state - inside store
-// action - via dispatch(active)
-const INITIAL_STATE = 0; // state can be any type/array/string/number/boolean/object
-// very first time, state is undefined, we initialize with 0
-//es5
-export function counterReducer(state = INITIAL_STATE, 
-                               action) {
-    console.log('counterReducer called', state, action);
-    switch(action.type) {
-        case INCREMENT: 
-                return state + action.payload.value;
-        case DECREMENT:
-                return state + action.payload.value;
-        case RESET:
-                return INITIAL_STATE
-        default:
-                return state;
-    }
-}
-
-
-//cartReducer.js
-export const cartReducer = (state = {}, action) => {
-    console.log('cartReducer called', state, action)
-    switch(action.type) {
-        default:
-            return state;
-    }
-}
-
-
-//loggerMiddleware.js
-// log every action dispatched in the console
-// es5
-function loggerMiddleware(store) {
-    // called once during store creation
-    // next is a function to forward action to next middlewares/reducers
-    return function(next) {
-        // called once during store creation
-        // action is passed via dispatch
-        return function(action) {
-            // called once during every dispatch
-            console.log('LOGGER ', action);
-            // forward to next middleware/reducers
-            const result = next(action);
-            // result is returned by dispatcher
-            // in general the same action object
-            console.log('result', result)
-            return result; 
-        }
-    }
-}
-
-// one line equalant of above middleware
-// const loggerMiddlware = store => next => action => next(action)
-
-
-// cacheMiddleware.js
-// es6
-
-export const cacheMiddleware = (store) => next => action => {
-    console.log('cacheMiddlware', action);
-    const result = next(action)
-    if (typeof action === 'object' && action.type.indexOf('[counter') >= 0) {
-        const state = store.getState(); // {counter: 0, cartItems: {}}
-        // store only counter to local storage
-        window.localStorage.setItem('counter', state.counter);
-    }
-
-    return result;
-}
-
-
-
-//store.js
 
 // creat and configure the store, middlewares etc
 // create store object {getState, dispatch, subscribe,...}
@@ -151,11 +52,15 @@ const initalState = {
 
 // createStore(counterReducer)
 
-
 const store = createStore(rootReducer, 
                           initalState,
-                          applyMiddleware(loggerMiddleware, 
+                          applyMiddleware(logger,
+                                          loggerMiddleware, 
                                           cacheMiddleware));
+
+export default store;
+
+// EXAMPLE ONLY, SHOULD NOT BE there in project
 
 //store apis
 console.log('STATE ', store.getState(), 'type ', typeof store.getState());

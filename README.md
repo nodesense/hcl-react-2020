@@ -256,6 +256,13 @@ function createStore(reducerFunc) {
 const store = createStore(coutnerReducer);
 
 
+---
+
+
+npm install redux-logger
+
+
+
 if git software is not installed, Download as zip, extract the files, and do `npm install`
 
 

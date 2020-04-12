@@ -187,6 +187,74 @@ npm install redux
 
 
 
+# Redux
+
+action --> event ==> object { type: 'INCR', payload }
+            describe what action can be performned
+            not a implementation
+
+how to create an action?
+    using action creators - helpers functions
+    create and return an action object
+
+reducer
+    pure function - stateless, given same input, we get same output
+    actual implementation of action 
+    logic/data manipulation
+    implement action/event
+    immutable
+
+    reducer(state, action) { 
+        return new state
+    }
+
+    who is callign reducer function?
+        store.dispatch (action)
+
+    where is the state coming from?
+        state is passed form dispatch function
+
+    how dispatch got the state?
+        store has internal closure variabel called currentState
+
+how to scale to more reducers?
+    createStore accept only one reducer.
+
+    // aggregation of multiple states together
+    combineReducers({
+        counter: counterReducer
+        cartITems: cartReducer
+    })
+
+    now who will call counterReducer?
+
+    it will be called by combineReducers function internally
+
+
+middleware
+    interceptors
+    invoved when do we dispatch
+    called before calling reducers
+
+function createStore(reducerFunc) {
+    let state = undefined; // closure/inside function
+
+    let currentReducer = reducerFunc
+    function dispatch(action) {
+        state = currentReducer(state, action)
+    }
+
+    function getState() {
+        return state;
+    }
+    return {
+        dispatch: dispatch,
+        getState: getStat
+    }
+}
+
+const store = createStore(coutnerReducer);
+
 
 if git software is not installed, Download as zip, extract the files, and do `npm install`
 

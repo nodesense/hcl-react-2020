@@ -97,6 +97,27 @@ function loggerMiddleware(store) {
     }
 }
 
+// one line equalant of above middleware
+// const loggerMiddlware = store => next => action => next(action)
+
+
+// cacheMiddleware.js
+// es6
+
+export const cacheMiddleware = (store) => next => action => {
+    console.log('cacheMiddlware', action);
+    const result = next(action)
+    if (typeof action === 'object' && action.type.indexOf('[counter') >= 0) {
+        const state = store.getState(); // {counter: 0, cartItems: {}}
+        // store only counter to local storage
+        window.localStorage.setItem('counter', state.counter);
+    }
+
+    return result;
+}
+
+
+
 //store.js
 
 // creat and configure the store, middlewares etc
@@ -128,9 +149,13 @@ const initalState = {
     // if not assigned here, then it takes reducer function
 }
 
+// createStore(counterReducer)
+
+
 const store = createStore(rootReducer, 
                           initalState,
-                          applyMiddleware(loggerMiddleware));
+                          applyMiddleware(loggerMiddleware, 
+                                          cacheMiddleware));
 
 //store apis
 console.log('STATE ', store.getState(), 'type ', typeof store.getState());

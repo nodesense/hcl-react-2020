@@ -2,7 +2,8 @@
 
 import {createStore,
         combineReducers, 
-        applyMiddleware} from 'redux';
+        applyMiddleware, 
+        bindActionCreators } from 'redux';
         
 import { createLogger } from 'redux-logger'
 
@@ -82,5 +83,19 @@ console.log('STATE', store.getState());
 
 // create action using action creator - helpers
 
-store.dispatch(increment(2)); // easy
+let a = increment(2); // 107
+store.dispatch(a); // easy
+
+// bindActionCreators, bind the dispatch method and action creators
+// returns bound method, which can invoke dispatch automatically
+
+// create a wrapper function, which can accept parameter
+// pass to incrment function as arg
+// get the action as output from increment 
+// dispatch to store
+const incrementDispatcher = bindActionCreators(increment, store.dispatch);
+
+// 110
+incrementDispatcher(3); //automatically dispatch increment action
+
 console.log('STATE', store.getState());

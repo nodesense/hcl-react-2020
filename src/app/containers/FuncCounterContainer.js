@@ -5,6 +5,7 @@
 
 // compose many parts into a container component
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 //actions.increment, actions.decrement, actions.reset
 import * as actions from '../state/actions';
@@ -38,6 +39,7 @@ export const mapStateToProps = (state) => {
 export const mapDispatchToProps = (dispatch, getState) => {
     return {
         // called by react component click events
+        /*
         increment: function(value) {
             console.log('invoking increment ')
             //actions.increment is action creators from actions.js
@@ -50,7 +52,17 @@ export const mapDispatchToProps = (dispatch, getState) => {
         reset: () => {
             console.log('invoking reset action ')
             dispatch(actions.reset());
-        }
+        }*/
+
+        // replace above with bindActionCreators
+        increment: bindActionCreators(actions.increment, dispatch),
+        decrement: bindActionCreators(actions.decrement, dispatch),
+        reset: bindActionCreators(actions.reset, dispatch),
+
+        // how to further reduce the code here
+        // wrap all the functions inside actions [increment, decrement, reset]
+        // dispatchers {increment, decrement, reset all binded to dispatch}
+        dispatchers: bindActionCreators(actions, dispatch)
     }
 }
 

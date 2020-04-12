@@ -12,9 +12,19 @@ function FuncCounter(props) {
         <div>
             <h2>Func Counter</h2>
             <p>Counter {counter}</p>
+
             <button onClick={ () =>  increment(1)}>+1</button>
             <button onClick={ () =>  decrement(1) }>-1</button>
             <button onClick={ () => reset() }>Reset</button>
+
+            <p>OR </p>
+
+
+    <button onClick={ () =>  props.dispatchers.increment(1)}>+1</button>
+    <button onClick={ () =>   props.dispatchers.decrement(1) }>-1</button>
+    <button onClick={ () =>  props.dispatchers.reset() }>Reset</button>
+
+
         </div>
     )
 }

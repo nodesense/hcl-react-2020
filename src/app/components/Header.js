@@ -42,6 +42,13 @@ const Header = (props) => {
 
 
             <NavLink className="button"
+                     to="/react-counter"
+                     activeClassName="success">
+                        React Counter
+            </NavLink>
+
+
+            <NavLink className="button"
                      to="/about"
                      activeClassName="success">
                         About

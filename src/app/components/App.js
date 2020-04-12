@@ -5,6 +5,9 @@ import Footer from './Footer';
 import Counter from './Counter';
 import Cart from './Cart';
 
+// not exported as default {} is must
+import {ReduxCounter} from './ReduxCounter';
+
 import ThemeContext from './ThemeContext';
 import LanguageContext, {english, tamil} from './LanguageContext';
 
@@ -85,6 +88,10 @@ function App() {
 
                 <Route path="/checkout">
                     <Checkout />
+                </Route>
+
+                <Route path="/react-counter">
+                    <ReduxCounter />
                 </Route>
 
                 <Route path="*">

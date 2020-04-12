@@ -22,7 +22,7 @@ export function counterReducer(state = INITIAL_STATE,
         case INCREMENT: 
                 return state + action.payload.value;
         case DECREMENT:
-                return state + action.payload.value;
+                return state - action.payload.value;
         case RESET:
                 return INITIAL_STATE
         default:

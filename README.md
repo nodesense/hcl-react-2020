@@ -287,7 +287,7 @@ import React from 'react';
 // Valid component
 // Pure View/Presentation Component
 // This is REACT is, View libray
-
+**
 export function ReduxCounter(props) {
         //destructure
         const {counter, increment, decrement, reset} = props;  
@@ -301,7 +301,7 @@ export function ReduxCounter(props) {
             </div>
         )
     }
-
+**
 
 how to I use this ReduxCounter functional component
 
@@ -330,6 +330,55 @@ class MagicComponent { -- parent component/container higher order component
 
     npm install react-redux
     
+
+# Redux Thunk
+
+    Motivation: 
+
+    Redux is a syncronous library
+        dispatch [sync]
+            all reducers called [sync]
+            store updated [sync]
+            all the susbcribers called [sync]
+        
+        dispatch come out
+
+
+# API Calls for Data
+    older day MVC --> Service classes [DAQ, calls DB methods]
+    View doesn't call DB/Other services in general
+
+    In React??
+        Want to make API call?
+            Where to call?
+                React
+                    -- General issue, view logic calling apis [not liking it]
+
+                Redux
+                    -- Sync
+                    -- reducer should be sync ,means no asnync call inside reducer
+                    -- where else to implement the API call?
+
+Lots of Solutions exists through middlewares to support async
+    Middlewares [every action is passed through middleware]
+            1. redux-thunk [same redux/react-redux author]
+            2. redux-saga
+            3. redux-observable
+
+
+# redux-thunk 
+
+    npm install redux-thunk
+
+    Implement Async functionalities using middlware, write the logics
+    in the action creator functions
+        normal action creator? is a function that create and return action OBJECT.
+
+        Thunk?
+        is a action creator function, that returns a FUNCTION as a ACTION
+        component will dispatch a function instead of object
+
+
 
 
 if git software is not installed, Download as zip, extract the files, and do `npm install`

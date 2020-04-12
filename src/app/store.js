@@ -16,6 +16,9 @@ import {cacheMiddleware} from './state/middlewares/cacheMiddleware';
 import {increment} from './state/actions';
 import {INCREMENT} from './state/action-types';
 
+//middleware, should be part of applyMiddleware
+import thunk from 'redux-thunk';
+
 
 
 const logger = createLogger({});
@@ -53,9 +56,23 @@ const initalState = {
 
 // createStore(counterReducer)
 
+// example thunk.code middleware
+
+// const thunkExampleCode = store => next => action => {
+//     console.log('thunkExampleCode middleware', action)
+//     // if action is function, stop it here, then call the function
+//     if (typeof action === 'function') {
+//         return action(store.dispatch, store.getState);
+//     }
+    
+//     // else forward to next middleware/reducer
+//     return next(action);
+// }
+
 const store = createStore(rootReducer, 
                           initalState,
-                          applyMiddleware(logger,
+                          applyMiddleware(thunk,
+                                          logger,
                                           loggerMiddleware, 
                                           cacheMiddleware));
 
@@ -99,3 +116,25 @@ const incrementDispatcher = bindActionCreators(increment, store.dispatch);
 incrementDispatcher(3); //automatically dispatch increment action
 
 console.log('STATE', store.getState());
+
+// action creator
+// return a function as action instead object as action
+//actions.js
+// implement async logic
+
+// add middleware that intercept func actions
+// then invoke those function actions
+// doesn't forward the function objects to reducer
+function asyncActionCreator() {
+    // this function is called by thunk middleware
+    return function(dispatch, getState) {
+        console.log('my async code is here');
+        setTimeout( () => {
+            console.log('async code');
+             dispatch(increment(200));
+        }, 5000);
+    }
+}
+const aFunc = asyncActionCreator();
+// dispatch a function to reducer
+store.dispatch(aFunc);

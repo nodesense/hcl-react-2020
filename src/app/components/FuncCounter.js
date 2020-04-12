@@ -10,7 +10,7 @@ function FuncCounter(props) {
     const {counter, increment, decrement, reset} = props;  
     return (
         <div>
-            <h2>Redux Counter</h2>
+            <h2>Func Counter</h2>
             <p>Counter {counter}</p>
             <button onClick={ () =>  increment(1)}>+1</button>
             <button onClick={ () =>  decrement(1) }>-1</button>

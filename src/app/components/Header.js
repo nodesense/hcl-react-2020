@@ -49,6 +49,14 @@ const Header = (props) => {
 
 
             <NavLink className="button"
+                     to="/func-counter"
+                     activeClassName="success">
+                        Func Counter
+            </NavLink>
+
+
+
+            <NavLink className="button"
                      to="/about"
                      activeClassName="success">
                         About

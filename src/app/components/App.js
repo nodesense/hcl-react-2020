@@ -15,6 +15,9 @@ import Home from './Home';
 import ProductList from './ProductList';
 import Checkout from './Checkout';
 
+// import container component
+import FuncCounter from '../containers/FuncCounterContainer';
+
 import {BrowserRouter as Router, 
         Route,
         Switch,
@@ -92,6 +95,10 @@ function App() {
 
                 <Route path="/react-counter">
                     <ReduxCounter />
+                </Route>
+ 
+                <Route path="/func-counter">
+                    <FuncCounter />
                 </Route>
 
                 <Route path="*">

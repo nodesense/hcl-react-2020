@@ -262,6 +262,71 @@ const store = createStore(coutnerReducer);
 npm install redux-logger
 
 
+# React Binding of Redux [ReduxCoutner.js]
+    React - view
+    Redux  - state
+
+Hardcore way, importing Redux store into react code - tight coupling
+    affect test cases while testing react code
+    we need to mock store, dispatch, getstate
+
+    x lines of code ==> test (10 x lines of code)
+
+Not to tight couple react and redux 
+    test react separately
+    test redux separately
+
+
+
+# Loose Coupling
+
+dont write this code
+
+import React from 'react';
+
+// Valid component
+// Pure View/Presentation Component
+// This is REACT is, View libray
+
+export function ReduxCounter(props) {
+        //destructure
+        const {counter, increment, decrement, reset} = props;  
+        return (
+            <div>
+                <h2>Redux Counter</h2>
+                <p>Counter {counter}</p>
+                <button onClick={ () =>  increment(1)}>+1</button>
+                <button onClick={ () =>  decrement(1) }>-1</button>
+                <button onClick={ () => reset() }>Reset</button>
+            </div>
+        )
+    }
+
+
+how to I use this ReduxCounter functional component
+
+JUST THINK
+
+You got a parent component,
+    automatically/automagically somehow
+        get the counter from redux
+        get increment/decrement/reset actions from redux
+        susbcribe/unusbcribe
+
+        pass them as props to ReduxCounter
+
+class MagicComponent { -- parent component/container higher order component
+    render () {
+        <ReduxCounter coutner={from redux}
+                      increment={from redux action}
+                      decrement= {from redux action}
+                      reset={from redux action}
+    }
+}
+
+
+
+
 
 if git software is not installed, Download as zip, extract the files, and do `npm install`
 

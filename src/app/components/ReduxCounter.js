@@ -4,6 +4,7 @@ import { increment, decrement, reset } from '../state/actions';
 
 // this file is only example for subscribe, unsubcirbe
 // container is best practice, explained later
+//Throwaway code, due hardcode react/redux tight coupling
 
 export class ReduxCounter extends React.Component {
     // no state, as we have redux to have state
@@ -13,7 +14,7 @@ export class ReduxCounter extends React.Component {
 
         // every time, we susbcribe, redux return a function
         // that function sould be used for unsubscribe
-        this.unsubsribe = store.subscribe ( () => {
+        this.unsubscribe = store.subscribe ( () => {
             // callback function called after every dispatch
             console.log('redux counter susbcribe ', store.getState());
             this.forceUpdate(); // trigger render
@@ -22,7 +23,7 @@ export class ReduxCounter extends React.Component {
 
     componentWillUnmount() {
         //todo: unsubscribe
-        this.unsubsribe(); // unsubscribe the above method
+        this.unsubscribe(); // unsubscribe the above method
     }
 
     render() {

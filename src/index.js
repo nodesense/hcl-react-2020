@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 
+// load the redux store file into brower
+import store from './app/store';
+
+
 import App from './app/components/App';
 
 console.log('end point', process.env.REACT_APP_ENDPOINT)

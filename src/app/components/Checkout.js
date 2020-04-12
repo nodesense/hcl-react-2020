@@ -31,9 +31,9 @@ class Checkout extends React.Component {
         this.firstNameRef.current.focus(); // set the cursor
     }
 
-    dyamicRef = (elem) => {
-        console.log("Dynaimc REf ", elem.tagName);
-    }
+    // dyamicRef = (elem) => {
+    //     console.log("Dynaimc REf ", elem.tagName);
+    // }
 
     incr = () => {
         this.setState({
@@ -68,7 +68,7 @@ class Checkout extends React.Component {
                     <option value='Pune'>Pune</option>   
                 </select>
 
-                <button onClick={this.incr}>Add</button>
+                {/* <button onClick={this.incr}>Add</button>
                 {
                     this.state.controls.map(name => (
                         <input key={name} 
@@ -78,6 +78,7 @@ class Checkout extends React.Component {
                                 />
                     ))
                 }
+                 */}
             </div>
         )
     }

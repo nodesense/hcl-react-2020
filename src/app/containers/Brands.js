@@ -22,6 +22,10 @@
                 // dispatch({type: ActionTypes.REQUEST_BRANDS});
 
                 dispatch({type:  ActionTypes.REQUEST_BRANDS_AND_PRODUCTS})
+            },
+
+            leavePage: () => {
+                dispatch({type:  ActionTypes.LEAVE_BRANDS_PAGE})
             }
         }
     }

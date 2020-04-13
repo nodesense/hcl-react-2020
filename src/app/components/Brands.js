@@ -8,6 +8,11 @@ export default class Brands extends React.Component {
         this.props.fetchBrands();
     }
 
+    componentWillUnmount() {
+        // dispatch a message for saga, to cancel pendign calls brands
+        this.props.leavePage(); 
+    }
+    
     render() {
         // receive from container
         const {brands, loading} = this.props;

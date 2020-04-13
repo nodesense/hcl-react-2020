@@ -20,6 +20,8 @@ export const INITIALIZE_PRODUCTS = '[products initialize]';
 export const REQUEST_BRANDS_AND_PRODUCTS = '[products requestProductsAndBrands]'
 export const REQUEST_PRODUCTS = '[products requestProducts]'
 
+export const LEAVE_BRANDS_PAGE = '[brands leaveBrandPage]';
+
 // executed through saga
 export const REQUEST_INCREMENT = '[counter requestIncrement]';
 

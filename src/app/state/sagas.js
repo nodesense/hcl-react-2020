@@ -7,7 +7,9 @@
 
 import {takeEvery, put, call, 
         takeLatest, cancelled,
-        all
+        all,
+        fork, take, cancel
+
         } from 'redux-saga/effects';
 
 import * as ActionTypes from './action-types';
@@ -124,10 +126,28 @@ function* fetchBrandsWithProducts(action) {
 
     //OR
     // use ALL/all to make a pareallel requests, it wait for all effects to complete
-    yield all([
-        call(fetchBrands, action),
-        call(fetchProducts, action)
-    ])
+    console.log('calling apis')
+
+    //all is blocking effect call
+    // yield  all([
+    //     call(fetchBrands, action),
+    //     call(fetchProducts, action)
+    // ])
+
+    const task1 = yield fork(fetchBrands, action)
+    const task2 = yield fork(fetchProducts, action)
+
+    console.log('calling apis done')
+
+    // wait for the message
+    console.log('watiting for page leave event if any')
+    const leavePageAction = yield take(ActionTypes.LEAVE_BRANDS_PAGE);
+    console.log('leavePage action ', leavePageAction)
+
+    if (leavePageAction.type === ActionTypes.LEAVE_BRANDS_PAGE) {
+        yield cancel(task1)
+        yield cancel(task2)
+    }
 }
 
 export function* fetchBrandsWithProductsSaga() {

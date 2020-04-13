@@ -12,6 +12,8 @@ import {bindActionCreators} from 'redux';
 //actions.increment, actions.decrement, actions.reset
 import * as actions from '../state/actions';
 
+import * as ActionTypes from '../state/action-types';
+
 import FuncCounter from '../components/FuncCounter';
 
 // no need to import store, store is exposed as context to container
@@ -65,7 +67,18 @@ export const mapDispatchToProps = (dispatch, getState) => {
         // how to further reduce the code here
         // wrap all the functions inside actions [increment, decrement, reset]
         // dispatchers {increment, decrement, reset all binded to dispatch}
-        dispatchers: bindActionCreators(actions, dispatch)
+        dispatchers: bindActionCreators(actions, dispatch),
+
+        requestIncrement: function() {
+            const action = {
+                type: ActionTypes.REQUEST_INCREMENT
+            }
+
+            // this will be intercepted by saga, it will call printAction
+            //    yield takeEvery(ActionTypes.REQUEST_INCREMENT, printAction)
+
+            dispatch(action);
+        }
     }
 }
 

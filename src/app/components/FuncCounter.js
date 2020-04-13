@@ -17,6 +17,8 @@ function FuncCounter(props) {
             <button onClick={ () =>  decrement(1) }>-1</button>
             <button onClick={ () => reset() }>Reset</button>
 
+            <button onClick= { () => props.requestIncrement() }> Request Incr Saga</button>
+
             <p>OR </p>
 
 

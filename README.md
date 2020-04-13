@@ -390,3 +390,8 @@ Lots of Solutions exists through middlewares to support async
 7. updated App.js
 8. updated store.js
    
+
+
+# SAGA
+
+    npm install  redux-saga

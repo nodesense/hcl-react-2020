@@ -22,6 +22,14 @@ import {INCREMENT} from './state/action-types';
 //middleware, should be part of applyMiddleware
 import thunk from 'redux-thunk';
 
+import createSagaMiddleware from 'redux-saga'
+
+import {counterSaga} from './state/sagas';
+
+
+//  create and returns a middleware
+const sagaMiddleware = createSagaMiddleware()
+
 
 
 const logger = createLogger({});
@@ -77,8 +85,14 @@ const store = createStore(rootReducer,
                           initalState,
                           applyMiddleware(thunk,
                                           logger,
+                                          sagaMiddleware,
                                           loggerMiddleware, 
                                           cacheMiddleware));
+
+
+//safer to be placed after createStore
+// register the sagas with middleware
+sagaMiddleware.run(counterSaga);                                        
 
 export default store;
 

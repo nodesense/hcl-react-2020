@@ -4,7 +4,7 @@ import { increment, decrement, reset } from '../state/actions';
 
 // this file is only example for subscribe, unsubcirbe
 // container is best practice, explained later
-//Throwaway code, due hardcode react/redux tight coupling
+//Throwaway code, due hardcode react/redux with tight coupling
 
 export class ReduxCounter extends React.Component {
     // no state, as we have redux to have state

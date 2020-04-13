@@ -118,7 +118,8 @@ incrementDispatcher(3); //automatically dispatch increment action
 console.log('STATE', store.getState());
 
 // action creator
-// return a function as action instead object as action
+// thunk: return a function as action instead object as action
+
 //actions.js
 // implement async logic
 
@@ -135,6 +136,7 @@ function asyncActionCreator() {
         }, 5000);
     }
 }
+// function as an action
 const aFunc = asyncActionCreator();
-// dispatch a function to reducer
+// dispatch a function/action to reducers
 store.dispatch(aFunc);

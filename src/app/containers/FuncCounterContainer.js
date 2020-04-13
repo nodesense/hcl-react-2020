@@ -4,6 +4,8 @@
 // avoid writing react code
 
 // compose many parts into a container component
+// connect - compose store, mapStateToProps, mapDispatchToProps, and React Component together
+// creates  a higher order component
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -24,6 +26,7 @@ import FuncCounter from '../components/FuncCounter';
 //  2. after every dispatch when the state got changed
 export const mapStateToProps = (state) => {
     return {
+        // property name: value from state
         counter: state.counter,
         // amount:  state.cart.amount
     }

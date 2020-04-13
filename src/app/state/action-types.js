@@ -16,3 +16,6 @@ export const INITIALIZE_LOADING = '[data loading]';
 
 // executed through saga
 export const REQUEST_INCREMENT = '[counter requestIncrement]';
+
+// executed through saga
+export const REQUEST_BRANDS = '[brands requestBrands]';

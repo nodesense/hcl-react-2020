@@ -16,6 +16,10 @@ export default class Brands extends React.Component {
             <div>
                 <h2>Brands</h2>
 
+                <button onClick={this.props.fetchBrandsWithSaga}>
+                    Refresh With Saga
+                </button>
+
                 { loading && 
                     <h4>Loading....</h4>
                 }

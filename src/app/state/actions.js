@@ -7,6 +7,9 @@ import {INCREMENT,
 
 import * as ActionTypes from './action-types';
 
+import * as service from './service';
+
+
 // write your action creators
 // action creaters are helper function
 // create and return action objects
@@ -29,15 +32,43 @@ export const reset = () => ({type: RESET})
 
 //brands
 
-export const initialize_brands = (brands) => ({
+export const initializeBrands = (brands) => ({
     type: ActionTypes.INITIALIZE_BRANDS,
     payload: {brands}
 })
 
-export const initialize_loading = (loading) => ({
+export const initializeLoading = (loading) => ({
     type: ActionTypes.INITIALIZE_LOADING,
     payload: {loading}
 })
 
 // TODO
-// thunk
+// thunk - design pattern to implement async code in actions function
+
+export const fetchBrands =  () => {
+    // return a function as an action
+    return async (dispatch, getState) => {
+        // this function is called by thunk middleware/refer store.js
+        // api calls/axios
+        
+        try {
+            // set the loading flag, so that we can see loading ... text in ui
+            const loadingAction = initializeLoading(true);
+            dispatch(loadingAction);
+            // or one line
+            // dispatch(initializeLoading(true))
+
+            // promise then part 
+            const brands = await service.getBrands();
+
+            // initialize brands in store
+            dispatch(initializeBrands(brands));
+
+            // turnoff loading flag
+            dispatch(initializeLoading(false));
+        }
+        catch (error) {
+            // called on exception, also on promise reject
+        }
+    }
+}

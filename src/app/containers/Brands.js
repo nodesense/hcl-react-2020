@@ -3,16 +3,19 @@
 
     import Brands from '../components/Brands';
     import * as actions from '../state/actions';
+    import {bindActionCreators} from 'redux';
 
     const mapStateToProps = (state) => {
         return {
-            //TODO
+            brands: state.brandState.brands,
+            loading: state.brandState.loading
         }
     }
 
     const mapDispatchToProps = (dispatch, getState) => {
         return {
-            //TODO
+            // automatically dispatch the function as action
+            fetchBrands: bindActionCreators(actions.fetchBrands, dispatch)
         }
     }
 

@@ -12,6 +12,9 @@ import {cartReducer} from './state/reducers/cartReducer';
 import {loggerMiddleware} from './state/middlewares/loggerMiddleware';
 import {cacheMiddleware} from './state/middlewares/cacheMiddleware';
 
+import {brandsReducer} from './state/reducers/brandsReducer';
+
+
 // NOT NEEDED, should be part of component/containers
 import {increment} from './state/actions';
 import {INCREMENT} from './state/action-types';
@@ -42,6 +45,7 @@ const rootReducer = combineReducers({
     // one --> one
     counter: counterReducer,
     cartItems: cartReducer,
+    brandState: brandsReducer
      // as many reducers...
 })
 

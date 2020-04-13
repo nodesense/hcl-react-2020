@@ -18,6 +18,8 @@ import Checkout from './Checkout';
 // import container component
 import FuncCounter from '../containers/FuncCounterContainer';
 
+import Brands from '../containers/Brands';
+
 import {BrowserRouter as Router, 
         Route,
         Switch,
@@ -77,6 +79,11 @@ function App() {
                 <Route path="/products">
                     <ProductList />
                 </Route>
+
+                <Route path="/brands">
+                    <Brands />
+                </Route>
+
 
                 <Route path="/about" render= { () => (
                                                 <div>

@@ -5,6 +5,8 @@ import {INCREMENT,
         DECREMENT,
         RESET} from './action-types';
 
+import * as ActionTypes from './action-types';
+
 // write your action creators
 // action creaters are helper function
 // create and return action objects
@@ -23,3 +25,19 @@ export const decrement = (value) => ({ // new object
 })
 //no payload
 export const reset = () => ({type: RESET})
+
+
+//brands
+
+export const initialize_brands = (brands) => ({
+    type: ActionTypes.INITIALIZE_BRANDS,
+    payload: {brands}
+})
+
+export const initialize_loading = (loading) => ({
+    type: ActionTypes.INITIALIZE_LOADING,
+    payload: {loading}
+})
+
+// TODO
+// thunk

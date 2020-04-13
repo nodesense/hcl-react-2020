@@ -10,3 +10,6 @@
 export const INCREMENT = '[counter increment]';
 export const DECREMENT = '[counter decrement]';
 export const RESET     = '[counter reset]';
+
+export const INITIALIZE_BRANDS = '[brands initialize]';
+export const INITIALIZE_LOADING = '[data loading]';

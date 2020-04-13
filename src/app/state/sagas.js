@@ -6,7 +6,8 @@
     // handy, spawn, fork, sequential/parellel/all/wait all/reject all
 
 import {takeEvery, put, call, 
-        takeLatest, cancelled
+        takeLatest, cancelled,
+        all
         } from 'redux-saga/effects';
 
 import * as ActionTypes from './action-types';
@@ -75,7 +76,7 @@ function* fetchBrands(action) {
     }
     finally {
         if (yield cancelled()) {
-           console.log('*****cancelled the call, cancel pending apis calls');
+           console.log('*****cancelled the call, cancel pending brands apis calls');
            source.cancel('task/api cancelled');
         }
         console.log('finally block')
@@ -91,3 +92,44 @@ export function* fetchBrandSaga() {
     yield takeLatest(ActionTypes.REQUEST_BRANDS, fetchBrands)
 }
 
+
+
+function* fetchProducts(action) {
+    console.log('fetching products', action);
+    const source = axios.CancelToken.source();
+
+    
+    try {
+        //loading state to true
+        const products = yield call(service.getProducts, {cancelToken: source.token} )// 1 argument for getBrands
+        // initialize brand in store
+        yield put(actions.initializeProducts(products));
+    }catch(error) {
+        console.log('error in execution', error)
+    }
+    finally {
+        if (yield cancelled()) {
+           console.log('*****cancelled the call, cancel pending product apis calls');
+           source.cancel('task/api cancelled');
+        }
+        console.log('finally block')
+    }
+}
+
+function* fetchBrandsWithProducts(action) {
+    //sync effect, complete fetching brands
+    // yield call(fetchBrands, action) 
+    // then complete fetching products
+    // yield call(fetchProducts, action)
+
+    //OR
+    // use ALL/all to make a pareallel requests, it wait for all effects to complete
+    yield all([
+        call(fetchBrands, action),
+        call(fetchProducts, action)
+    ])
+}
+
+export function* fetchBrandsWithProductsSaga() {
+    yield takeLatest(ActionTypes.REQUEST_BRANDS_AND_PRODUCTS, fetchBrandsWithProducts)
+}

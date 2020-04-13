@@ -24,7 +24,8 @@ import thunk from 'redux-thunk';
 
 import createSagaMiddleware from 'redux-saga'
 
-import {counterSaga, fetchBrandSaga} from './state/sagas';
+import {counterSaga, fetchBrandSaga,
+       fetchBrandsWithProductsSaga} from './state/sagas';
 
 
 //  create and returns a middleware
@@ -93,7 +94,8 @@ const store = createStore(rootReducer,
 //safer to be placed after createStore
 // register the sagas with middleware
 sagaMiddleware.run(counterSaga);      
-sagaMiddleware.run(fetchBrandSaga);                                  
+sagaMiddleware.run(fetchBrandSaga);       
+sagaMiddleware.run(fetchBrandsWithProductsSaga);                           
 
 export default store;
 

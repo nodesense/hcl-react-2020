@@ -42,6 +42,11 @@ export const initializeLoading = (loading) => ({
     payload: {loading}
 })
 
+export const initializeProducts = (products) => ({
+    type: ActionTypes.INITIALIZE_PRODUCTS,
+    payload: {products}
+})
+
 // TODO
 // thunk - design pattern to implement async code in actions function
 

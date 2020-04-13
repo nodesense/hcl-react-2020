@@ -14,6 +14,12 @@ export const RESET     = '[counter reset]';
 export const INITIALIZE_BRANDS = '[brands initialize]';
 export const INITIALIZE_LOADING = '[data loading]';
 
+export const INITIALIZE_PRODUCTS = '[products initialize]';
+
+//saga
+export const REQUEST_BRANDS_AND_PRODUCTS = '[products requestProductsAndBrands]'
+export const REQUEST_PRODUCTS = '[products requestProducts]'
+
 // executed through saga
 export const REQUEST_INCREMENT = '[counter requestIncrement]';
 

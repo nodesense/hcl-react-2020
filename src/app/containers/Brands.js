@@ -19,7 +19,9 @@
             fetchBrands: bindActionCreators(actions.fetchBrands, dispatch),
             fetchBrandsWithSaga: function () {
                 // intercepted by saga, fetch brands
-                dispatch({type: ActionTypes.REQUEST_BRANDS});
+                // dispatch({type: ActionTypes.REQUEST_BRANDS});
+
+                dispatch({type:  ActionTypes.REQUEST_BRANDS_AND_PRODUCTS})
             }
         }
     }

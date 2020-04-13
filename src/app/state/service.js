@@ -12,3 +12,13 @@ export const getBrands = (options = {}) => {
                return response.data;
            })
 }
+
+
+export const getProducts = (options = {}) => {
+    return axios.get(`${config.apiEndPoint}/api/products`, options)
+           .then (response => {
+               //returned to caller promise
+               // data is list of brand object
+               return response.data;
+           })
+}

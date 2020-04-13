@@ -39,7 +39,7 @@ export const initializeBrands = (brands) => ({
 
 export const initializeLoading = (loading) => ({
     type: ActionTypes.INITIALIZE_LOADING,
-    payload: {loading}
+    payload: {loading: loading}
 })
 
 export const initializeProducts = (products) => ({

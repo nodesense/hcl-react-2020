@@ -30,8 +30,8 @@ class CartItem extends PureComponent {
             <tr>
                 <td>{item.name} </td>
                 <td>{item.price}</td>
-                <td>{item.qty}</td>
-                <td>{item.price * item.qty}</td>
+                <td><em>{item.qty}</em></td>
+                <td><strong>{item.price * item.qty}</strong></td>
                 <td> 
                 <button className={this.context} onClick={() => this.props.updateItem(item.id, item.qty + 1) }>
                         +1

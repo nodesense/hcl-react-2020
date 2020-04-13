@@ -48,6 +48,12 @@ class Cart extends Component {
     removeItem = (id) => {
         console.log('removeItem', id)
         //FIXME
+        this.setState( prevState => ({
+            items:  prevState.items.filter ( item => item.id !== id)
+        }));
+
+        // functional setstate
+        this.setState(this.recalculate);
     }
 
     updateItem = (id, qty) => {

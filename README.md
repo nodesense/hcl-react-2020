@@ -395,3 +395,88 @@ Lots of Solutions exists through middlewares to support async
 # SAGA
 
     npm install  redux-saga
+
+# UNIT TEST
+
+    White box testing
+        Test code
+    React-Redux - Functions/Pure function
+
+    Framework - JEST https://jestjs.io/docs/en/tutorial-react
+
+    X line of code might need 5 to 10 times more test case 10X
+
+    BDD - Behaviour Driven Development
+    Requirements is expressed as SPEC - Specification
+        Test the specification 
+            Block box - selinium
+            White box - function, classes,  our scope/JEST
+            Integreation - White box, with application, covered
+
+    Test Suite - Collection of Test Cases
+        Test Case 1 (one or many expecations)
+                will have expectation or assert
+                assert(1 + 1 , 2, "invalid artimatic")
+        Test Case 2
+        ..        N
+
+        Test cases
+            Sync
+            Async - API, Timers
+
+        API - You should not call Web service API at any time
+                we should mock the API calls and responses
+
+    Art of the Test case
+        Design components that can be testable
+        Single Responsibility
+        Testable
+
+
+    BDD
+        JavaScript
+            Jasmine - Test Library - Useful to write test cases
+                     Expectation, describe test suite, test cases
+
+            JEST - Test Runner
+                        Test Runner, shall execute test cases
+                        Sponsored by React Team
+                        (include Jasmine functionalties internally + addtioanl feature)
+
+To run teh test case, 
+
+open teh command prompt
+
+> npm test
+
+
+File name conventions.
+    the file shoud end with .test.js or .spec.js, then jest will execute automatically
+
+where to store test cases?
+
+    1. The test files canbe places into __test__ folder
+    2. or on the same project files folder [preferable]
+
+
+# Component testing
+
+    1. Snapshot
+          1. Refer image/json/xml/tree comparison
+          2. First time, while running, a snapshot is created
+          3. Second timeonwards, the snapshot is compared againt the actual result
+          4. __snapshots__ folder, file per test
+    2. Enzyme [jqeury like select] - 3rd party library, needs to be configure / AirBNB [extra config]
+       1. render [snapshot like]
+       2. mount
+       3. shallow
+
+npm install react-test-renderer
+
+**npm install enzyme enzyme-adapter-react-16 enzyme-to-json
+** 
+
+npm install fetch-mock node-fetch
+
+
+npm install redux-mock-store

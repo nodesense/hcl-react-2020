@@ -19,13 +19,9 @@ function FuncCounter(props) {
 
             <button onClick= { () => props.requestIncrement() }> Request Incr Saga</button>
 
-             
-
-
-    <button onClick={ () =>  props.dispatchers.increment(1)}>+1</button>
-    <button onClick={ () =>   props.dispatchers.decrement(1) }>-1</button>
-    <button onClick={ () =>  props.dispatchers.reset() }>Reset</button>
-
+            <button onClick={ () =>  props.dispatchers.increment(1)}>+1</button>
+            <button onClick={ () =>   props.dispatchers.decrement(1) }>-1</button>
+            <button onClick={ () =>  props.dispatchers.reset() }>Reset</button>
 
         </div>
     )
